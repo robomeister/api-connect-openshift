@@ -28,8 +28,18 @@ oc policy add-role-to-user admin "system:serviceaccount:apicg:tiller"
 oc adm policy add-scc-to-group anyuid system:serviceaccounts:apicg
 ```
 
+## Step 5 - Install oc and kubectl command line executables
 
-## Step x - Install Helm Client
+Helm uses the `kubectl` command under the covers, so it will need to be available along with the `oc` command:
+
+```
+https://github.com/openshift/origin/releases/download/v3.11.0/openshift-origin-client-tools-v3.11.0-0cbc58b-linux-64bit.tar.gz
+```
+
+Extract the `oc` (if neccessary) and `kubectl` executables, placomg them in an executable path.
+
+
+## Step 6 - Install Helm Client
 
 ```
 # wget https://get.helm.sh/helm-v2.16.0-linux-amd64.tar.gz
@@ -37,3 +47,20 @@ oc adm policy add-scc-to-group anyuid system:serviceaccounts:apicg
 # cp linux-amd64/helm /usr/local/bin
 # chmod 755 /usr/local/bin/helm
 ```
+
+## Step 7 - Initialize Helm Client
+
+```
+ oc login <openshift endpoint> --username=username --password=password
+ export TILLER_NAMESPACE=apicg
+ helm init --client-only
+ helm version
+```
+
+You should see the following:
+
+```
+Client: &version.Version{SemVer:"v2.16.0", GitCommit:"e13bc94621d4ef666270cfbe734aaabf342a49bb", GitTreeState:"clean"}
+Server: &version.Version{SemVer:"v2.16.0", GitCommit:"e13bc94621d4ef666270cfbe734aaabf342a49bb", GitTreeState:"clean"}
+```
+
