@@ -25,7 +25,7 @@ oc policy add-role-to-user admin "system:serviceaccount:apicg:tiller"
 ## Step 4 - Assign any-uid SCC to pods running in the APICG project
 
 ```
-oc adm policy add-scc-to-group anyuid-scc system:serviceaccounts:apicg
+oc adm policy add-scc-to-group anyuid system:serviceaccounts:apicg
 ```
 
 
