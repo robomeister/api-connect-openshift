@@ -16,6 +16,12 @@ oc process -f https://github.com/openshift/origin/raw/master/examples/helm/tille
 
 This template will create the service account `system:serviceaccount:apicg:tiller`.  
 
+## Step 3 - Assign admin access to the tiller service account for the APICG project
+
+```
+oc policy add-role-to-user admin "system:serviceaccount:apicg:tiller"
+```
+
 
 ## Step x - Install Helm Client
 
