@@ -1,4 +1,4 @@
-# Installing APIC Gateway into OpenShift using HELM without cluster-admin
+# Installing APIC Gateway into OpenShift using Helm/Tiller without cluster-admin
 
 
 ## Step 1 - Create APICG Project
