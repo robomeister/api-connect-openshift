@@ -16,6 +16,25 @@ oc process -f https://github.com/openshift/origin/raw/master/examples/helm/tille
 
 This template will create the service account `system:serviceaccount:apicg:tiller`.  
 
+If you can't download the tiller image over the internet, then perform the following from a machine that can:
+
+```
+wget https://github.com/openshift/origin/raw/master/examples/helm/tiller-template.yaml
+docker pull gcr.io/kubernetes-helm/tiller:v2.16.0
+```
+
+Put the tiller image into your local container registry, then update the tiller-template.yaml file with the name of the new image:
+
+```
+image: <local-registry-coordinates>/tiller:${HELM_VERSION}
+```
+Then perform:
+
+```
+oc process -f ./tiller-template.yaml -p TILLER_NAMESPACE="${TILLER_NAMESPACE}" -p HELM_VERSION=v2.16.0 | oc create -f -
+```
+
+
 ## Step 3 - Assign admin access to the tiller service account for the APICG project
 
 ```
