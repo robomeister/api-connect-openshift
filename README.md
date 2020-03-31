@@ -37,6 +37,8 @@ oc process -f ./tiller-template.yaml -p TILLER_NAMESPACE="${TILLER_NAMESPACE}" -
 
 ## Step 3 - Assign admin access to the tiller service account for the APICG project
 
+In the `apicg` project:
+
 ```
 oc policy add-role-to-user admin "system:serviceaccount:apicg:tiller"
 ```
